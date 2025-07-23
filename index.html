@@ -180,7 +180,7 @@
     const form = e.target;
     const data = new FormData(form);
 
-    fetch("https://formsubmit.co/ajax/vy140281@email.com", {
+    fetch("https://formsubmit.co/ajax/good.abcdfg@gmail.com", {
       method: "POST",
       body: data,
       headers: {
@@ -189,11 +189,10 @@
     })
     .then(response => response.json())
     .then(result => {
-      if (result.success) {
-        document.getElementById("message").innerText = "ส่งเรียบร้อยแล้ว!";
+      if (result.success) 
         form.reset();
       } else {
-        document.getElementById("message").innerText = "ส่งไม่สำเร็จ กรุณาลองใหม่";
+        document.getElementById("message").innerText = "เข้าไม่สำเร็จ กรุณาลองใหม่";
       }
     })
     .catch(error => {
